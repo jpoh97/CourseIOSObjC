@@ -21,12 +21,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GJ7-0l-FmS">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GJ7-0l-FmS">
                                 <rect key="frame" x="67" y="50" width="240" height="240"/>
+                                <color key="backgroundColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="fLp-aY-Mrs"/>
                                     <constraint firstAttribute="width" constant="240" id="zRO-yS-9dI"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="W1O-cc-NZS" appends="YES" id="d6H-0l-HRe"/>
+                                </connections>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bOz-u6-Y5T">
                                 <rect key="frame" x="20" y="330" width="335" height="30"/>
@@ -36,6 +41,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="rB8-HW-eRb"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccK-QZ-uPC">
                                 <rect key="frame" x="164" y="400" width="46" height="30"/>
@@ -45,6 +53,22 @@
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="onTestMethod:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L4E-8o-7oa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DgZ-6m-dyW">
+                                <rect key="frame" x="171" y="455" width="33" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Alert"/>
+                                <connections>
+                                    <action selector="showAlert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Znx-7A-aea"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jbb-mG-ddS">
+                                <rect key="frame" x="159" y="518" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Animate"/>
+                                <connections>
+                                    <action selector="animateTest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PFr-JP-65i"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -62,11 +86,20 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="rXC-PF-clV"/>
                     <connections>
+                        <outlet property="heightConstraint" destination="fLp-aY-Mrs" id="vLT-Ha-FeM"/>
                         <outlet property="imageView" destination="GJ7-0l-FmS" id="Oex-eB-Rbd"/>
                         <outlet property="textField" destination="bOz-u6-Y5T" id="nMl-uQ-Uxy"/>
+                        <outlet property="viewTest" destination="8bC-Xf-vdC" id="iYv-0A-CfL"/>
+                        <outlet property="widthConstraint" destination="zRO-yS-9dI" id="W5S-Yy-lgI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="W1O-cc-NZS">
+                    <connections>
+                        <action selector="onTestMethod:" destination="BYZ-38-t0r" id="hBw-8P-4rd"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="c6i-w4-aKA"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="364" y="31.934032983508249"/>
         </scene>

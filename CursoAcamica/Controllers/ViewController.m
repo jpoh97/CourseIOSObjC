@@ -12,6 +12,9 @@
 @interface ViewController ()
 
 @property (nonatomic, strong) NSMutableArray *array;
+@property (weak, nonatomic) IBOutlet UIView *viewTest;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *widthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint;
 
 @end
 
@@ -38,6 +41,8 @@
     [mutDictionary enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         NSLog(@"%@", obj);
     }];
+    
+    self.textField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
     
 //    Food *spaghetti = [[Food alloc] init];
 //    spaghetti.name = @"Spaghetti";
@@ -153,5 +158,36 @@
     self.imageView.backgroundColor = [UIColor greenColor];
 }
 
+- (void) textFieldDidEndEditing:(UITextField *) textField {
+    if (textField.text) {
+        [[NSUserDefaults standardUserDefaults] setObject:textField.text forKey:@"username"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *) textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (IBAction)showAlert:(id)sender {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Mi alerta" message:@"Esta es mi alerta" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertControllerStyleAlert handler:^(UIAlertAction * action) {
+        NSLog(@"ok action");
+    }];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (IBAction)animateTest:(id)sender {
+    self.heightConstraint.constant = 100.0f;
+    self.widthConstraint.constant = 300.0f;
+    
+    [UIView animateWithDuration:0.5  animations:^(void){
+        [self.view layoutIfNeeded];
+        self.viewTest.backgroundColor = [UIColor grayColor];
+    }];
+}
 
 @end
