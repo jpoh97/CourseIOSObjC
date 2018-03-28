@@ -73,17 +73,24 @@
 		B58667B0206A77A700D8A73A /* CursoAcamica */ = {
 			isa = PBXGroup;
 			children = (
+				B58A85B8206BC93500B7F4B5 /* Models */,
+				B58A85B7206BC90500B7F4B5 /* Controllers */,
 				B58667B1206A77A700D8A73A /* AppDelegate.h */,
 				B58667B2206A77A700D8A73A /* AppDelegate.m */,
-				B58667B4206A77A700D8A73A /* ViewController.h */,
-				B58667B5206A77A700D8A73A /* ViewController.m */,
 				B58667B7206A77A700D8A73A /* Main.storyboard */,
-				B58667C7206A7F6000D8A73A /* Food.h */,
-				B58667C8206A7F6000D8A73A /* Food.m */,
 				B58667BA206A77A700D8A73A /* Assets.xcassets */,
 				B58667BC206A77A700D8A73A /* LaunchScreen.storyboard */,
 				B58667BF206A77A700D8A73A /* Info.plist */,
 				B58667C0206A77A700D8A73A /* main.m */,
+			);
+			path = CursoAcamica;
+			sourceTree = "<group>";
+		};
+		B58A85B7206BC90500B7F4B5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B58667B4206A77A700D8A73A /* ViewController.h */,
+				B58667B5206A77A700D8A73A /* ViewController.m */,
 				B58667CA206AE18300D8A73A /* FoodTableViewCell.h */,
 				B58667CB206AE18300D8A73A /* FoodTableViewCell.m */,
 				B58667D6206AED2E00D8A73A /* MenuListTableViewController.h */,
@@ -93,7 +100,16 @@
 				B58667DC206AFBB600D8A73A /* MenuGridCollectionViewController.h */,
 				B58667DD206AFBB600D8A73A /* MenuGridCollectionViewController.m */,
 			);
-			path = CursoAcamica;
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B58A85B8206BC93500B7F4B5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B58667C7206A7F6000D8A73A /* Food.h */,
+				B58667C8206A7F6000D8A73A /* Food.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

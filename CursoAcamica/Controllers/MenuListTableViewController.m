@@ -12,8 +12,7 @@
 
 @interface MenuListTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSMutableArray *array;
-@property (nonatomic, strong) NSArray *foods;
+@property (nonatomic, strong) NSMutableArray *foods;
 
 @end
 
@@ -24,22 +23,24 @@
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    Food *spaghetti = [[Food alloc] init];
-    spaghetti.name = @"Spaghetti";
-    spaghetti.foodDescription = @"Spaghetti description";
-    spaghetti.imageName = @"spaghetti.jpg";
-
-    Food *fish = [[Food alloc] init];
-    fish.name = @"Fish";
-    fish.foodDescription = @"Fish description";
-    fish.imageName = @"fish";
-
-    Food *chicken = [[Food alloc] init];
-    chicken.name = @"Chicken";
-    chicken.foodDescription = @"Chicken description";
-    chicken.imageName = @"chicken.jpg";
-
-    self.foods = @[spaghetti, fish, chicken];
+    [self remoteCall];
+    
+//    Food *spaghetti = [[Food alloc] init];
+//    spaghetti.name = @"Spaghetti";
+//    spaghetti.foodDescription = @"Spaghetti description";
+//    spaghetti.imageName = @"spaghetti.jpg";
+//
+//    Food *fish = [[Food alloc] init];
+//    fish.name = @"Fish";
+//    fish.foodDescription = @"Fish description";
+//    fish.imageName = @"fish";
+//
+//    Food *chicken = [[Food alloc] init];
+//    chicken.name = @"Chicken";
+//    chicken.foodDescription = @"Chicken description";
+//    chicken.imageName = @"chicken.jpg";
+//
+//    self.foods = @[spaghetti, fish, chicken];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,6 +73,46 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100;
+}
+
+
+#pragma mark - Networking
+
+- (void) remoteCall {
+    NSString *url = @"https://api.myjson.com/bins/2f2qi";
+    
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+    
+    __weak MenuListTableViewController *weakSelf = self;
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:url] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            //Success Response
+            if ([response isKindOfClass:[NSHTTPURLResponse class ]]) {
+                NSError *jsonError;
+                NSArray *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                if (!jsonError) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        weakSelf.foods = [[NSMutableArray alloc] init];
+                        
+                        for (NSDictionary *element in jsonResponse) {
+                            Food *food = [[Food alloc] init];
+                            food.name = [element objectForKey:@"name"];
+                            food.imageName = [element objectForKey:@"foodImage"];
+                            food.foodDescription = [element objectForKey:@"foodDescription"];
+                            
+                            [weakSelf.foods addObject:food];
+                        }
+                        
+                        [weakSelf.tableView reloadData];
+                    });
+                }
+            }
+        }
+    }];
+    
+    [dataTask resume];
 }
 
 /*
@@ -117,5 +158,15 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+typedef void (^simpleBlock)(void);
+
+-(void) genericMethod {
+    simpleBlock block = ^{
+        NSLog(@"Esto es un bloque", nil);
+    };
+    block(); 
+}
 
 @end

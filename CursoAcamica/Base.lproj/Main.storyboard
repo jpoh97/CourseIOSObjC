@@ -117,7 +117,6 @@
                                 <connections>
                                     <outlet property="foodImageName" destination="GM2-H5-cLh" id="I9r-Rc-cVb"/>
                                     <outlet property="titleLabel" destination="h88-HK-wuV" id="c3a-Rh-p07"/>
-                                    <outlet property="titleName" destination="h88-HK-wuV" id="WPN-2B-g53"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -232,6 +231,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="CJ9-wP-5R1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xqB-q2-6Lr">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

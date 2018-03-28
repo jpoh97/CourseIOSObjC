@@ -17,11 +17,6 @@
 
 @implementation FoodCollectionViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
 - (void) setTitle:(NSString*) title andImageName:(NSString*) imageName {
     [self.titleLabel setText:title];
     [self.foodImageName setImage:[UIImage imageNamed:imageName]];
